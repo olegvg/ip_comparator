@@ -1,0 +1,13 @@
+uwsgi:
+  socket: 127.0.0.1:8081
+  pythonpath: /opt/apps/ip_comparator/ip_comparator/
+  module: service.app:app
+  logger: service file:/opt/logs/ip_comparator/service_app.log
+  logger: file:/opt/logs/ip_comparator/service_uwsgi.log
+
+  # issue 'apt-get install libpcre3-dev' and rebuild uWSGI to gain support of log routing
+  log-route: service \sservice\s
+
+  processes: 8
+  threads: 1
+  stats: 127.0.0.1:9081
